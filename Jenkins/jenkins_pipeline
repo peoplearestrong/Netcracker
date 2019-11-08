@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage ('ssh'){
             steps {
-                sh 'ssh root@target \'hostname'\'
+                sh 'ssh root@target \'hostname\''
             }
         }
         
