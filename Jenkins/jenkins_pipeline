@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage ('Compile Stage') {
+            steps {
+                echo 'Hi, this is Jenkins user!'
+            }
+        }
+
+        stage ('Two') {
+            steps {
+                sh 'touch /opt/TESTFILE'
+            }
+        }
+
+        stage ('Three') {
+            steps {
+                echo 'Complite'
+            }
+        }
+    }
+}
