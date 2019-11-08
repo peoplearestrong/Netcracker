@@ -1,0 +1,21 @@
+#!groovy
+properties ([disableConcurrentBuilds()])
+
+
+pipeline {
+    agent any
+
+    stages {      
+        stage ('Liferay install') {
+            steps {
+                sh 'ansible-playbook /etc/ansible/liferay-vps-playbook.yml'
+            }
+        }
+
+        stage ('PostgreSQL install') {
+            steps {
+                sh 'ansible-playbook /etc/ansible/psql-vps-playbook.yml'
+            }
+        }
+    }
+}
