@@ -1,4 +1,13 @@
 ---
+      - name: Delete directory
+        file:
+          path: /opt/{{ item }}
+          state: absent
+          recurse: yes
+          loop:
+            - apache-tomcat-* 
+            - tomcat
+      
       - name: Create new group tomcat
         group:
           name: tomcat
