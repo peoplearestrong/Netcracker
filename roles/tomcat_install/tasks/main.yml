@@ -4,9 +4,9 @@
           path: /opt/{{ item }}
           state: absent
           recurse: yes
-          loop:
-            - apache-tomcat-* 
-            - tomcat
+        loop:
+          - apache-tomcat-*
+          - tomcat
       
       - name: Create new group tomcat
         group:
