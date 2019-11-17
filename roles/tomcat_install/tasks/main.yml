@@ -3,7 +3,7 @@
         file:
           path: /opt/{{ item }}
           state: absent
-          recurse: yes
+#          recurse: yes
         loop:
           - apache-tomcat-9.0.27
           - apache-tomcat-9.0.27.tar.gz
