@@ -5,14 +5,14 @@ properties ([disableConcurrentBuilds()])
 pipeline {
     agent any
 
-    options{
-        ansiColor('xterm')
-/// Добавить после проверки основного pipeline
- /*     inventoryPath('/etc/ansible/hosts') 
-        ansibleName('2.9.0')
-        become(true)
-*/
-    }
+//     options{
+//         ansiColor('xterm')
+// /// Добавить после проверки основного pipeline
+//     inventoryPath('/etc/ansible/hosts') 
+//         ansibleName('2.9.0')
+//         become(true)
+
+//     }
 
     stages {
         stage ('Tomcat install'){
