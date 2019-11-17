@@ -5,16 +5,52 @@ properties ([disableConcurrentBuilds()])
 pipeline {
     agent any
 
-    stages {      
-        stage ('Liferay install') {
-            steps {
-                sh 'ansible-playbook /etc/ansible/liferay-vps-playbook.yml'
+    options{
+        ansiColor('xterm')
+/// Добавить после проверки основного pipeline
+ /*     inventoryPath('/etc/ansible/hosts') 
+        ansibleName('2.9.0')
+        become(true)
+*/
+    }
+
+    stages {   
+        stage ('Java install'){
+            steps{
+                ansiblePlaybook('/etc/ansible/java_install.yml')
+                    inventoryPath('/etc/ansible/hosts')
+                    ansibleName('2.9.0')
+                    become(true)
             }
         }
 
-        stage ('PostgreSQL install') {
+        stage ('WilFly install'){
             steps {
-                sh 'ansible-playbook /etc/ansible/psql-vps-playbook.yml'
+                ansiblePlaybook('/etc/ansible/wildfly_install.yml'){
+                    inventoryPath('/etc/ansible/hosts')
+                    ansibleName('2.9.0')
+                    become(true)
+                }                
+            }
+        }
+
+        stage ('Liferay install') {
+            steps { 
+                ansiblePlaybook('/etc/ansible/jenkins_install.yml'){
+                    inventoryPath('/etc/ansible/hosts')
+                    ansibleName('2.9.0')
+                    become(true)
+                }
+            }
+        }
+
+        stage ('PostgreSQL install'){ 
+            steps {
+                ansiblePlaybook('/etc/ansible/postgresql_install.yml'){
+                    inventoryPath('/etc/ansible/hosts')
+                    ansibleName('2.9.0')
+                    become(true)
+                }
             }
         }
     }
