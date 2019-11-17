@@ -1,0 +1,2 @@
+[nc]
+jenkins ansible_host=10.8.0.149 ansible_user=wildfly ansible_connection=ssh ansible_ssh_private_key_file=/root/.ssh/id_rsa
