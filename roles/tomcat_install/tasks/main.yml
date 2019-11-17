@@ -5,7 +5,8 @@
           state: absent
           recurse: yes
         loop:
-          - apache-tomcat-*
+          - apache-tomcat-9.0.27
+          - apache-tomcat-9.0.27.tar.gz
           - tomcat
       
       - name: Create new group tomcat
