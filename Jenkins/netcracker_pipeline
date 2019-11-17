@@ -17,16 +17,16 @@ pipeline {
     stages {
         stage ('Tomcat install'){
             steps{
-                ansiblePlaybook('/root/.jenkins/workspace/My\ Pipeline/tomcat_install.yml'){
-                    inventoryPath('/root/.jenkins/workspace/My\ Pipeline/hosts')
+                ansiblePlaybook('/root/.jenkins/workspace/My Pipeline/tomcat_install.yml'){
+                    inventoryPath('/root/.jenkins/workspace/My Pipeline/hosts')
                 }
             }
         }
 
         stage ('Jenkins install'){
             steps{
-                ansiblePlaybook('/root/.jenkins/workspace/My\ Pipeline/jenkins_install.yml'){
-                    inventoryPath('/root/.jenkins/workspace/My\ Pipeline/hosts')
+                ansiblePlaybook('/root/.jenkins/workspace/My Pipeline/jenkins_install.yml'){
+                    inventoryPath('/root/.jenkins/workspace/My Pipeline/hosts')
                 }
             }
         }   
