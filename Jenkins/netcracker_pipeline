@@ -14,44 +14,59 @@ pipeline {
 */
     }
 
-    stages {   
-        stage ('Java install'){
+    stages {
+        stage ('Tomcat install'){
             steps{
-                ansiblePlaybook('/etc/ansible/java_install.yml')
-                    inventoryPath('/etc/ansible/hosts')
-                    ansibleName('2.9.0')
-                    become(true)
-            }
-        }
-
-        stage ('WilFly install'){
-            steps {
-                ansiblePlaybook('/etc/ansible/wildfly_install.yml'){
-                    inventoryPath('/etc/ansible/hosts')
-                    ansibleName('2.9.0')
-                    become(true)
-                }                
-            }
-        }
-
-        stage ('Liferay install') {
-            steps { 
-                ansiblePlaybook('/etc/ansible/jenkins_install.yml'){
-                    inventoryPath('/etc/ansible/hosts')
-                    ansibleName('2.9.0')
-                    become(true)
+                ansiblePlaybook('/root/.jenkins/workspace/Tomcat/tomcat_install.yml'){
+                    inventoryPath('/root/.jenkins/workspace/Tomcat/hosts')
                 }
             }
         }
 
-        stage ('PostgreSQL install'){ 
-            steps {
-                ansiblePlaybook('/etc/ansible/postgresql_install.yml'){
-                    inventoryPath('/etc/ansible/hosts')
-                    ansibleName('2.9.0')
-                    become(true)
+        stage ('Jenkins install'){
+            steps{
+                ansiblePlaybook('/root/.jenkins/workspace/Tomcat/jenkins_install.yml'){
+                    inventoryPath('/root/.jenkins/workspace/Tomcat/hosts')
                 }
             }
-        }
+        }   
+        // stage ('Java install'){
+        //     steps{
+        //         ansiblePlaybook('/etc/ansible/java_install.yml')
+        //             inventoryPath('/etc/ansible/hosts')
+        //             ansibleName('2.9.0')
+        //             become(true)
+        //     }
+        // }
+
+        // stage ('WilFly install'){
+        //     steps {
+        //         ansiblePlaybook('/etc/ansible/wildfly_install.yml'){
+        //             inventoryPath('/etc/ansible/hosts')
+        //             ansibleName('2.9.0')
+        //             become(true)
+        //         }                
+        //     }
+        // }
+
+        // stage ('Liferay install') {
+        //     steps { 
+        //         ansiblePlaybook('/etc/ansible/jenkins_install.yml'){
+        //             inventoryPath('/etc/ansible/hosts')
+        //             ansibleName('2.9.0')
+        //             become(true)
+        //         }
+        //     }
+        // }
+
+        // stage ('PostgreSQL install'){ 
+        //     steps {
+        //         ansiblePlaybook('/etc/ansible/postgresql_install.yml'){
+        //             inventoryPath('/etc/ansible/hosts')
+        //             ansibleName('2.9.0')
+        //             become(true)
+        //         }
+        //     }
+        // }
     }
 }
