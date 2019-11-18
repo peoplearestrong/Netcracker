@@ -1,7 +1,7 @@
 ---
       - name: Delete directory
         file:
-          path: /opt/{{ item }}
+          path: "/opt/{{ item }}"
           state: absent
 #          recurse: yes
         loop:
