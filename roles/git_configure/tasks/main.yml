@@ -4,7 +4,7 @@
   - name: Cleaning workspace directory
     # shell: rm -r '/root/.jenkins/workspace/proba'
     file:
-      path: '/root/.jenkins/worksptace/proba'
+      path: '/root/.jenkins/workspace/'
       state: absent
 
   # - name: remove files and directories
