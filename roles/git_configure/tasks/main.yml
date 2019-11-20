@@ -7,19 +7,6 @@
       path: '/root/.jenkins/workspace/'
       state: absent
 
-  # - name: remove files and directories
-  #   file:
-  #     state: "{{ item }}"
-  #     path: "/root/.jenkins/workspace/proba"
-  #     owner: root
-  #     group: root
-  #     mode: '0755'
-  #   with_items:
-  #     - 
-  #     - directory
 
-  # - pause: 
-  #     seconds: 5
-
-  # - name: Clone rep to workspace
-  #   shell: git clone -b master --single-branch https://github.com/peoplearestrong/Netcracker.git /root/.jenkins/workspace/proba
+  - name: Clone rep to workspace
+    shell: git clone -b master --single-branch https://github.com/peoplearestrong/Netcracker.git /root/.jenkins/workspace/proba
