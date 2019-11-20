@@ -13,13 +13,13 @@ pipeline {
             }
         }
 
-        // stage ('Git clone to workspace'){
-        //     steps{
-        //         //ansiColor('xterm') {
-        //             sh 'git clone -b master --single-branch git@github.com:peoplearestrong/Netcracker.git ~/.jenkins/workspace/'
-        //         //}
-        //     }
-        // }
+        stage ('Git clone to workspace'){
+            steps{
+                //ansiColor('xterm') {
+                    sh 'git clone -b master --single-branch git@github.com:peoplearestrong/Netcracker.git ~/.jenkins/workspace/'
+                //}
+            }
+        }
 
         stage ('Tomcat install'){
             steps{
