@@ -5,13 +5,13 @@ pipeline {
     agent any
 
     stages {
-        // stage ('Cleaning workspace directory'){
-        //     steps{
-        //         //ansiColor('xterm') {
-        //             sh 'rm -r ~/.jenkins/workspace/*'
-        //         //}
-        //     }
-        // }
+        stage ('Cleaning workspace directory'){
+            steps{
+                //ansiColor('xterm') {
+                    sh 'rm -r ~/.jenkins/workspace/*'
+                //}
+            }
+        }
 
         // stage ('Git clone to workspace'){
         //     steps{
