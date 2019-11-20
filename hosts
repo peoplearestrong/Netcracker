@@ -1,4 +1,6 @@
 [nc]
 // jenkins ansible_host=10.8.0.149 ansible_user=wildfly ansible_connection=ssh ansible_ssh_private_key_file=/root/.ssh/id_rsa ansible_become_pass=sit
 
-jenkins ansible_host=10.8.0.150 ansible_user=jenkins ansible_password=sit ansible_become_pass=sit
+// jenkins ansible_host=10.8.0.150 ansible_user=jenkins ansible_password=sit ansible_become_pass=sit
+
+localhost

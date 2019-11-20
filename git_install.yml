@@ -1,6 +1,6 @@
 ---
 - name: Configure git
-  hosts: jenkins
+  hosts: localhost
   gather_facts: false
   become: yes
   become_user: root  
