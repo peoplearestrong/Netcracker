@@ -33,27 +33,27 @@ pipeline {
         //     }
         // }
 
-        stage ('Tomcat install'){
-            steps{
-                ansiColor('xterm') {
-                    ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/proba/tomcat_install.yml',
-                        inventory: '/root/.jenkins/workspace/proba/hosts',
-                        colorized: true)
-                }
-            }
-        }
+        // stage ('Tomcat install'){
+        //     steps{
+        //         ansiColor('xterm') {
+        //             ansiblePlaybook(
+        //                 playbook: '/root/.jenkins/workspace/proba/tomcat_install.yml',
+        //                 inventory: '/root/.jenkins/workspace/proba/hosts',
+        //                 colorized: true)
+        //         }
+        //     }
+        // }
 
-        stage ('Jenkins install'){
-            steps{
-                ansiColor('xterm') {
-                    ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/proba/jenkins_install.yml',
-                        inventory: '/root/.jenkins/workspace/proba/hosts',
-                        colorized: true)
-                }
-            }
-        }   
+        // stage ('Jenkins install'){
+        //     steps{
+        //         ansiColor('xterm') {
+        //             ansiblePlaybook(
+        //                 playbook: '/root/.jenkins/workspace/proba/jenkins_install.yml',
+        //                 inventory: '/root/.jenkins/workspace/proba/hosts',
+        //                 colorized: true)
+        //         }
+        //     }
+        // }   
 
         // stage ('Java install'){
         //     steps{
