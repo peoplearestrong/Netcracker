@@ -6,8 +6,8 @@
       path: '/root/.jenkins/workspace/*'
       state: absent
 
-  - pause: 
-      seconds: 5
+  # - pause: 
+  #     seconds: 5
 
-  - name: Clone rep to workspace
-    shell: git clone -b master --single-branch https://github.com/peoplearestrong/Netcracker.git /root/.jenkins/workspace/proba
+  # - name: Clone rep to workspace
+  #   shell: git clone -b master --single-branch https://github.com/peoplearestrong/Netcracker.git /root/.jenkins/workspace/proba
