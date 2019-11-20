@@ -1,22 +1,22 @@
 ---
 # tasks file for git_configure
 
-  # - name: Cleaning workspace directory
-  #   # shell: rm -r '/root/.jenkins/workspace/*'
-  #   file:
-  #     path: '/root/.jenkins/workspace/'
-  #     state: absent
-
-  - name: remove files and directories
+  - name: Cleaning workspace directory
+    # shell: rm -r '/root/.jenkins/workspace/proba'
     file:
-      state: "{{ item }}"
-      path: "/root/.jenkins/workspace/"
-      owner: root
-      group: root
-      mode: '0755'
-    with_items:
-      - absent
-      - directory
+      path: '/root/.jenkins/worksptace/proba'
+      state: absent
+
+  # - name: remove files and directories
+  #   file:
+  #     state: "{{ item }}"
+  #     path: "/root/.jenkins/workspace/proba"
+  #     owner: root
+  #     group: root
+  #     mode: '0755'
+  #   with_items:
+  #     - 
+  #     - directory
 
   # - pause: 
   #     seconds: 5
