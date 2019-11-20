@@ -1,0 +1,10 @@
+---
+# tasks file for git_configure
+
+  - name: Cleaning workspace directory
+    file:
+      path: '/root/.jenkins/workspace/*'
+      state: absent
+
+  - name: Clone rep to workspace
+    shell: git clone -b master --single-branch https://github.com/peoplearestrong/Netcracker.git /root/.jenkins/workspace/proba
