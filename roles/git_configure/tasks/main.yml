@@ -2,9 +2,10 @@
 # tasks file for git_configure
 
   - name: Cleaning workspace directory
-    file:
-      path: '/root/.jenkins/workspace/*'
-      state: absent
+    shell: rm -r /root/.jenkins/workspace/*
+    # file:
+    #   path: '/root/.jenkins/workspace/*'
+    #   state: absent
 
   # - pause: 
   #     seconds: 5
