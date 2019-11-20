@@ -1,4 +1,6 @@
-+
+#!groovy
+properties ([disableConcurrentBuilds()])
+
 pipeline {
     agent any
 
@@ -23,8 +25,8 @@ pipeline {
             steps{
                 ansiColor('xterm') {
                     ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/My Pipeline/tomcat_install.yml',
-                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
+                        playbook: '/root/.jenkins/workspace/proba/tomcat_install.yml',
+                        inventory: '/root/.jenkins/workspace/proba/hosts',
                         colorized: true)
                 }
             }
@@ -34,8 +36,8 @@ pipeline {
             steps{
                 ansiColor('xterm') {
                     ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/My Pipeline/jenkins_install.yml',
-                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
+                        playbook: '/root/.jenkins/workspace/proba/jenkins_install.yml',
+                        inventory: '/root/.jenkins/workspace/proba/hosts',
                         colorized: true)
                 }
             }
