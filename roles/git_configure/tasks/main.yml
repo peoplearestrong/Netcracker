@@ -1,11 +1,22 @@
 ---
 # tasks file for git_configure
 
-  - name: Cleaning workspace directory
-    # shell: rm -r '/root/.jenkins/workspace/*'
+  # - name: Cleaning workspace directory
+  #   # shell: rm -r '/root/.jenkins/workspace/*'
+  #   file:
+  #     path: '/root/.jenkins/workspace/'
+  #     state: absent
+
+  - name: remove files and directories
     file:
-      path: '/root/.jenkins/workspace/'
-      state: absent
+      state: "{{ item }}"
+      path: "/root/.jenkins/workspace/"
+      owner: root
+      group: root
+      mode: '0755'
+    with_items:
+      - absent
+      - directory
 
   # - pause: 
   #     seconds: 5
