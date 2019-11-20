@@ -3,21 +3,21 @@ pipeline {
     agent any
 
     stages {
-        stage ('Cleaning workspace directory'){
-            steps{
-                //ansiColor('xterm') {
-                    sh 'rm -r ~/.jenkins/workspace/*'
-                //}
-            }
-        }
+        // stage ('Cleaning workspace directory'){
+        //     steps{
+        //         //ansiColor('xterm') {
+        //             sh 'rm -r ~/.jenkins/workspace/*'
+        //         //}
+        //     }
+        // }
 
-        stage ('Git clone to workspace'){
-            steps{
-                //ansiColor('xterm') {
-                    sh 'git clone -b master --single-branch git@github.com:peoplearestrong/Netcracker.git ~/.jenkins/workspace/'
-                //}
-            }
-        }
+        // stage ('Git clone to workspace'){
+        //     steps{
+        //         //ansiColor('xterm') {
+        //             sh 'git clone -b master --single-branch git@github.com:peoplearestrong/Netcracker.git ~/.jenkins/workspace/'
+        //         //}
+        //     }
+        // }
 
         stage ('Tomcat install'){
             steps{
