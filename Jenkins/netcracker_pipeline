@@ -14,7 +14,7 @@ pipeline {
         stage ('Git clone to workspace'){
             steps{
                 ansiColor('xterm') {
-                    git clone -b master --single-branch 'git@github.com:peoplearestrong/Netcracker.git' ~/.jenkins/workspace/
+                    git clone -b master --single-branch 'git@github.com:peoplearestrong/Netcracker.git ~/.jenkins/workspace/'
                 }
             }
         }
