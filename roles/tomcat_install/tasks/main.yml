@@ -86,16 +86,23 @@
           src: tomcat.service
           dest: '/etc/systemd/system/'
 
-      - name: Configure Service tomcat
-        systemd:
-          daemon_reload: yes
-          daemon_reexec: yes
-
       - name: Start tomcat
         systemd:
+          daemon_reload: yes
+          name: tomcat
+          stat: started
+          # daemon_reexec: yes
+
+      # - name: Start tomcat
+      #   systemd:
+      #     name: tomcat
+      #     enabled: yes
+      #     masked: no
+
+      - name: Configure Service tomcat
+        systemd: 
           name: tomcat
           enabled: yes
-          masked: no
 
       - name: Configure Tomcat users
         template: src=tomcat-users.xml dest='/opt/tomcat/conf/tomcat-users.xml'
