@@ -2,7 +2,6 @@
 # tasks file for git_configure
 
   - name: Cleaning workspace directory
-    # shell: rm -r '/root/.jenkins/workspace/proba'
     file:
       path: '/root/.jenkins/workspace/'
       state: absent
