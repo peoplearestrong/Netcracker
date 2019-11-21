@@ -13,7 +13,7 @@
     shell: nohup java -Djenkins.install.runSetupWizard=false -jar /opt/tomcat/webapps/jenkins.war & 
 
   - name: Startup tomcat
-    shell: /opt/tomcat/bin/catalina.sh start
+    shell: bash /opt/tomcat/bin/catalina.sh start
   # - name: Startup tomcat
   #   shell: nohup /opt/tomcat/bin/startup.sh &
 
