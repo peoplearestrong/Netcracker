@@ -13,7 +13,11 @@
     shell: nohup java -Djenkins.install.runSetupWizard=false -jar /opt/tomcat/webapps/jenkins.war & 
 
   - name: Startup tomcat
-    shell: bash /opt/tomcat/bin/startup.sh
+    shell: bash /opt/tomcat/bin/{{ item }}
+    loop:
+      - shutdown.sh
+      - startup.sh
+
   # - name: Startup tomcat
   #   shell: nohup /opt/tomcat/bin/startup.sh &
 
