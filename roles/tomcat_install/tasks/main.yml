@@ -91,7 +91,6 @@
           daemon_reload: yes
           name: tomcat
           stat: started
-          # daemon_reexec: yes
 
       # - name: Start tomcat
       #   systemd:
