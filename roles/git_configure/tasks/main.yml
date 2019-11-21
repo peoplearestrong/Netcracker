@@ -6,6 +6,12 @@
       path: '/root/.jenkins/workspace/'
       state: absent
 
+  - name: Create pipeline directory
+    file:
+      path: '/root/.jenkins/workspace/proba'
+      state: directory
+      owner: root
+      group: root
 
   - name: Clone rep to workspace
     shell: git clone -b master --single-branch https://github.com/peoplearestrong/Netcracker.git /root/.jenkins/workspace/proba
