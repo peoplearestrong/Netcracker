@@ -13,7 +13,9 @@
   shell: nohup java -Djenkins.install.runSetupWizard=false -jar /opt/tomcat/webapps/jenkins.war &
 
 - name: Configure Global Security "Enable security"
-  template: src=jenkins_config.xml dest='/root/.jenkins/config.xml'
+  template: 
+    src: jenkins_config.xml
+    dest: '/root/.jenkins/config.xml'
 
 - name: Startup tomcat
   shell: nohup /opt/tomcat/bin/startup.sh &
