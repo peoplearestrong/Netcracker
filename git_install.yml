@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: false
   become: yes
-  become_user: root  
-  
-  roles: 
+  become_user: root
+
+  roles:
     - git_configure
