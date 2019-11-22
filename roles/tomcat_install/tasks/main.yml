@@ -1,11 +1,11 @@
 ---
       - name: Cleaning from previous versions
         file:
-          path: '/opt/'
+          path: '/opt/{{ item }}'
           state: absent
-        # loop:
-        #   - apache-tomcat-*
-        #   - tomcat
+        loop:
+          - apache-tomcat-*
+          - tomcat
       
       - name: Create new group tomcat
         group:
@@ -86,24 +86,22 @@
           src: tomcat.service
           dest: '/etc/systemd/system/'
 
-      - name: Start tomcat
+      - name: Configure Service tomcat
         systemd:
           daemon_reload: yes
           daemon_reexec: yes
-          name: tomcat
-          state: started
-          masked: no
 
-      # - name: Start tomcat
-      #   systemd:
-      #     name: tomcat
-      #     enabled: yes
-      #     masked: no
-
-      - name: Configure Service tomcat
-        systemd: 
+      - name: Start tomcat
+        systemd:
           name: tomcat
           enabled: yes
+          masked: no
+
+      - name: Allow all access to tcp port 80
+        ufw:
+          rule: allow
+          port: 80
+          proto: tcp
 
       - name: Configure Tomcat users
         template: src=tomcat-users.xml dest='/opt/tomcat/conf/tomcat-users.xml'
