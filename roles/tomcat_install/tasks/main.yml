@@ -1,11 +1,11 @@
 ---
       - name: Cleaning from previous versions
         file:
-          path: '/opt/{{ item }}'
+          path: '/opt/'
           state: absent
-        loop:
-          - apache-tomcat-*
-          - tomcat
+        # loop:
+        #   - apache-tomcat-*
+        #   - tomcat
       
       - name: Create new group tomcat
         group:
@@ -90,7 +90,7 @@
         systemd:
           daemon_reload: yes
           name: tomcat
-          stat: started
+          state: started
           masked: no
 
       # - name: Start tomcat
