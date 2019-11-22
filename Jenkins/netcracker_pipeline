@@ -4,16 +4,22 @@ properties ([disableConcurrentBuilds()])
 pipeline {
     agent any
 
-     stages {
-        stage ('Script execution'){
+    //  stages {
+    //     stage ('Script execution'){
+    //         steps{
+    //             ansiColor('exterm') {
+    //                 ansiblePlaybook(
+    //                     playbook: '/root/.jenkins/workspace/proba/git_install.yml',
+    //                     inventory: '/root/.jenkins/workspace/proba/hosts',
+    //                     colorized: true
+    //                 )
+    //             }
+    //         }
+    //     }
+
+        stage ('Clean workspace'){
             steps{
-                ansiColor('exterm') {
-                    ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/proba/git_install.yml',
-                        inventory: '/root/.jenkins/workspace/proba/hosts',
-                        colorized: true
-                    )
-                }
+                cleanWs()
             }
         }
 
