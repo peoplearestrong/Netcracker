@@ -1,6 +1,6 @@
 ---
 - name: Configure git
-  hosts: localhost
+  hosts: wildfly
   gather_facts: false
   become: yes
   become_user: root

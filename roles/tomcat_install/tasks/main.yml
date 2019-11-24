@@ -97,26 +97,30 @@
     enabled: yes
     masked: no
 
-- name: Allow all access to tcp port 80
-  ufw:
-    rule: allow
-    port: 80
-    proto: tcp
-
 - name: Configure Tomcat users
-  template: src=tomcat-users.xml dest='/opt/tomcat/conf/tomcat-users.xml'
+  template: 
+    src: tomcat-users.xml 
+    dest: '/opt/tomcat/conf/tomcat-users.xml'
 
 - name: Change tomcat users
-  template: src=tomcat-users.xml dest='/opt/tomcat/conf/tomcat-users.xml'
+  template: 
+    src: tomcat-users.xml 
+    dest: '/opt/tomcat/conf/tomcat-users.xml'
 
 - name: Change tomcat port
-  template: src=server.xml dest='/opt/tomcat/conf/server.xml'
+  template:
+    src: server.xml 
+    dest: '/opt/tomcat/conf/server.xml'
 
 - name: Change manager context
-  template: src=context_stock.xml dest='/opt/tomcat/webapps/manager/META-INF/context.xml'
+  template: 
+    src: context_stock.xml 
+    dest: '/opt/tomcat/webapps/manager/META-INF/context.xml'
 
 - name: Change host-manager context
-  template: src=context_host.xml dest='/opt/tomcat/webapps/host-manager/META-INF/context.xml'
+  template:
+    src: context_host.xml
+    dest: '/opt/tomcat/webapps/host-manager/META-INF/context.xml'
 
 - name: start tomcat
   shell: nohup /opt/tomcat/bin/startup.sh &

@@ -1,10 +1,10 @@
 
 ---
   - name: Install jenkins plugins
-    hosts: jenkins
+    hosts: wildfly
     gather_facts: no
     become: yes
     become_user: root
 
     roles:
-      - plugins_install
+      - configure_jenkins
