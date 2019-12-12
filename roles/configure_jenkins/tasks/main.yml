@@ -1,58 +1,55 @@
-
 ---
 # tasks file for plugins_install
 - name: Install jenkins-cli.jar
   get_url:
-    url: "http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/jnlpJars/jenkins-cli.jar" # ЗАМЕНА IP АДРЕСА НА ПЕРЕМЕННУЮ
-    dest: "{{jenkins_path}}" # можно заменить путь
-
-- name: Configure Global Security "Enable security"
-  template: 
-    src: jenkins_config.xml
-    dest: '/root/.jenkins/config.xml'
-
-- name: Restart jenkins
-  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ restart"
-
-- pause:
-    seconds: 40
+    url: "http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/jnlpJars/jenkins-cli.jar"
+    dest: "{{jenkins_path}}"
 
 - name: Add User admin to jenkins
-  shell: echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin","admin")' | java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ groovy =
+  shell: echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin","admin")' | java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ groovy =
 
-- pause:
-    seconds: 20
+- name: Restart tomcat
+  systemd:
+    state: restarted
+    name: tomcat
+
+- name: Wait for tomcat to come up
+  uri:
+    url: "http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins"
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 200
+  delay: 5
 
 - name: Install jenkins plugins
-  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
+  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
   loop:
-    - cloudbees-folder # Folders
-    - antisamy-markup-formatter # OWASP Markup Formatter
-    - build-timeout # Build Timeout
-    - credentials-binding # Credentials Binding
-    - timestamper # Timestamper
     - ws-cleanup # Workspace Cleanup
-    - ant # Ant
-    - gradle # Gradle
     - workflow-aggregator # Pipeline
-    - github-branch-source # GitHub Branch Source
-    - pipeline-github-lib # Pipeline: GitHub Groovy Libraries
     - pipeline-stage-view # Pipeline: Stage View
     - git # Git
-    - subversion # Subversion
-    - ssh-slaves # SSH Slaves
-    - matrix-auth # Matrix Authorization Strategy
-    - pam-auth # PAM Authentication
-    - ldap # LDAP
-    - email-ext # Email Extension
     - ansible # Ansible
     - ansicolor # AnsiColor
 
-- name: Add job to jenkins
-  shell: java -jar /root/.jenkins/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins -auth admin:admin create-job {{job_name}} < {{jenkins_path}}/{{job_xml}}
+- name: Restart tomcat
+  systemd:
+    state: restarted
+    name: tomcat
 
-- name: Restart jenkins
-  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ restart"
+- name: Wait for Tomcat to come up
+  uri:
+    url: "http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins"
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 200
+  delay: 5
+
+- name: Add job to jenkins
+  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ create-job netcracker < /root/Netcrecker-project/export.xml"
 
 - name: Start pipeline
-  shell: http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/job/{{job_name}}/build?token=START_PIELINE #Сделать токен с именем START_PIPELINE
+  uri:
+    url: "http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/job/{{job_name}}/build?token=START_PIPELINE"
+    status_code: 201
